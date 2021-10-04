@@ -58,7 +58,7 @@ seeds = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 hidden_dim = 500
 n_samples = 300
 epochs = 1000
-delta = 0.1
+delta = 1
 
 experiments = [
     {'name': 'Base Model',
@@ -170,8 +170,8 @@ for seed in seeds:
 
         # Average heatmaps over seeds
         net.eval()
-        heatmap_avg[:, exp_idx] += torch.softmax(net(heatmap_plane), dim=1).data.cpu().numpy()[:, 0] / len(seeds)
-        # heatmap_avg[:, exp_idx] += torch.argmax(net(heatmap_plane), dim=1).data.cpu().numpy() / len(seeds)
+        # heatmap_avg[:, exp_idx] += torch.softmax(net(heatmap_plane), dim=1).data.cpu().numpy()[:, 0] / len(seeds)
+        heatmap_avg[:, exp_idx] += torch.argmax(net(heatmap_plane), dim=1).data.cpu().numpy() / len(seeds)
 
 # Plotting
 matplotlib.rcParams['contour.negative_linestyle'] = 'solid'
@@ -194,4 +194,4 @@ for exp_idx, exp in enumerate(experiments):
     ax.yaxis.set_major_locator(plt.NullLocator())
 
 plt.tight_layout()
-plt.savefig('runs/mixup_moons_delta_{}.png'.format(delta))
+plt.savefig('plots/mixup_moons_delta_{}.png'.format(delta))
