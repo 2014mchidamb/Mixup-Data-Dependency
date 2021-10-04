@@ -170,9 +170,9 @@ for seed in seeds:
 
         # Average heatmaps over seeds
         net.eval()
-        heatmap_avg[:, exp_idx] += net(heatmap_plane).data.cpu().numpy()[:, 0] / len(seeds)
+        # heatmap_avg[:, exp_idx] += net(heatmap_plane).data.cpu().numpy()[:, 0] / len(seeds)
         # heatmap_avg[:, exp_idx] += torch.softmax(net(heatmap_plane), dim=1).data.cpu().numpy()[:, 0] / len(seeds)
-        # heatmap_avg[:, exp_idx] += torch.argmax(net(heatmap_plane), dim=1).data.cpu().numpy() / len(seeds)
+        heatmap_avg[:, exp_idx] += torch.argmin(net(heatmap_plane), dim=1).data.cpu().numpy() / len(seeds)
 
 # Plotting
 matplotlib.rcParams['contour.negative_linestyle'] = 'solid'

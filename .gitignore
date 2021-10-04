@@ -133,3 +133,6 @@ data/
 
 # other pycache stuff
 utils/__pycache__/
+
+# slurm output
+slurm*
