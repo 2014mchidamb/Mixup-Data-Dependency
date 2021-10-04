@@ -1,0 +1,29 @@
+The following model/training parameters were used for this run: 
+
+batch_size =  128
+mixup_alpha =  1024.0
+h_dim =  512
+num_hidden =  1
+lr =  0.001
+epochs =  50
+num_runs =  5
+-------------------------------------------------
+
+Mixup model training loss results: 
+-------------------------------------------------
+
+Mixup test performance: 
+
+Test set: Average loss: 0.0003, Accuracy: 9911/10000 (99%)
+
+-------------------------------------------------
+
+Base model training loss results: 
+-------------------------------------------------
+
+Base test performance: 
+
+Test set: Average loss: 0.0002, Accuracy: 9954/10000 (100%)
+
+-------------------------------------------------
+
