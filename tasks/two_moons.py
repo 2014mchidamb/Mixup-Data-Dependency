@@ -58,14 +58,16 @@ seeds = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 hidden_dim = 500
 n_samples = 300
 epochs = 1000
-delta = 0.5
+delta = 0.1
+alpha_1 = 128
+alpha_2 = 512
 
 experiments = [
     {'name': 'Base Model',
      'dataset': lambda seed: two_moons_dataset(seed, margin=+delta)},
-    {'name': 'Mixup Model (alpha = {})'.format(1),
+    {'name': 'Mixup Model (alpha = {})'.format(alpha_1),
      'dataset': lambda seed: two_moons_dataset(seed, margin=+delta)},
-    {'name': 'Mixup Model (alpha = {})'.format(1024),
+    {'name': 'Mixup Model (alpha = {})'.format(alpha_2),
      'dataset': lambda seed: two_moons_dataset(seed, margin=+delta)}]
 
 # Network architecture
@@ -131,8 +133,6 @@ for seed in seeds:
         net = Net(hidden_dim, exp)
         if 'Mixup' in exp['name']:
             mixup_alpha = float(exp['name'].split()[-1][:-1]) # Just get numerical value and ignore paren.
-            if '8' in exp['name']:
-                mixup_alpha = 9.0
             net = ManifoldMixupModel(net, alpha=mixup_alpha) # Input mixup.
         if 'weight_decay' in exp['name']:
             optimizer = optim.SGD(net.parameters(), lr=1e-2, momentum=0.9, weight_decay=exp['coef'])
@@ -170,8 +170,6 @@ for seed in seeds:
 
         # Average heatmaps over seeds
         net.eval()
-        # heatmap_avg[:, exp_idx] += net(heatmap_plane).data.cpu().numpy()[:, 0] / len(seeds)
-        # heatmap_avg[:, exp_idx] += torch.softmax(net(heatmap_plane), dim=1).data.cpu().numpy()[:, 0] / len(seeds)
         heatmap_avg[:, exp_idx] += torch.argmin(net(heatmap_plane), dim=1).data.cpu().numpy() / len(seeds)
 
 # Plotting
@@ -195,4 +193,4 @@ for exp_idx, exp in enumerate(experiments):
     ax.yaxis.set_major_locator(plt.NullLocator())
 
 plt.tight_layout()
-plt.savefig('plots/mixup_moons_delta_{}.png'.format(delta))
+plt.savefig('plots/mixup_moons_alpha_{}_{}_delta_{}.png'.format(alpha_1, alpha_2, delta))
