@@ -16,7 +16,7 @@ from utils.data_utils import load_mnist, load_cifar10, load_cifar100
 
 
 def compute_min_mixup_distance(out_file, task, train_dataset, test_dataset, subset_prop, simulation_epochs, alpha):
-    """Computes min cosine distance between test/train data points and mixed up train data points."""
+    """Computes min/avg angular distance between test/train data points and mixed up train data points."""
     # We will use these indices when comparing with other points to check for collisions.
     mixup_indices = {i : [] for i in range(len(train_dataset.classes))}
     mixup_points = []
@@ -68,8 +68,8 @@ def compute_min_mixup_distance(out_file, task, train_dataset, test_dataset, subs
     print('{} Smallest Angular Distance Between Test/Mixup Points With Class Collisions: {}\n'.format(task, min_mixup_test_dist), file=out_file)
 
 
-subset_prop = 0.5
-alpha = 1024
+subset_prop = 0.5 # How much to subsample the data.
+alpha = 1024 # Mixing parameter.
 num_epochs = 1
 out_file= open('runs/datasets_subset_{}_alpha_{}_epochs_{}_analysis.out'.format(subset_prop, alpha, num_epochs), 'w')
 
