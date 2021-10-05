@@ -68,7 +68,7 @@ def compute_min_mixup_distance(out_file, task, train_dataset, test_dataset, subs
     print('{} Smallest Angular Distance Between Test/Mixup Points With Class Collisions: {}\n'.format(task, min_mixup_test_dist), file=out_file)
 
 
-subset_prop = 1
+subset_prop = 0.5
 alpha = 1024
 num_epochs = 1
 out_file= open('runs/datasets_subset_{}_alpha_{}_epochs_{}_analysis.out'.format(subset_prop, alpha, num_epochs), 'w')

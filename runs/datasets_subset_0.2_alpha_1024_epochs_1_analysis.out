@@ -1,0 +1,21 @@
+Size of subsampled train data: 12000
+Size of subsampled test data: 2000
+MNIST Average Angular Distance Between Train/Mixup Points With Class Collisions: 0.24889051335873952
+MNIST Smallest Angular Distance Between Train/Mixup Points With Class Collisions: 0.13909575709564104
+MNIST Average Angular Distance Between Test/Mixup Points With Class Collisions: 0.24684602224875188
+MNIST Smallest Angular Distance Between Test/Mixup Points With Class Collisions: 0.15953758508980032
+
+Size of subsampled train data: 10000
+Size of subsampled test data: 2000
+CIFAR10 Average Angular Distance Between Train/Mixup Points With Class Collisions: 0.26272604754988776
+CIFAR10 Smallest Angular Distance Between Train/Mixup Points With Class Collisions: 0.09673729415038314
+CIFAR10 Average Angular Distance Between Test/Mixup Points With Class Collisions: 0.2630898526530839
+CIFAR10 Smallest Angular Distance Between Test/Mixup Points With Class Collisions: 0.08739717745875618
+
+Size of subsampled train data: 10000
+Size of subsampled test data: 2000
+CIFAR100 Average Angular Distance Between Train/Mixup Points With Class Collisions: 0.24820575571322714
+CIFAR100 Smallest Angular Distance Between Train/Mixup Points With Class Collisions: 0.07016455603425983
+CIFAR100 Average Angular Distance Between Test/Mixup Points With Class Collisions: 0.2448506762447441
+CIFAR100 Smallest Angular Distance Between Test/Mixup Points With Class Collisions: 0.08186423905844609
+
