@@ -1,5 +1,5 @@
 # Mixup-Data-Dependency
-Code associated with the paper "Towards Understanding the Data Dependency of Mixup-style Training".
+Code associated with the paper ["Towards Understanding the Data Dependency of Mixup-style Training"](https://arxiv.org/abs/2110.07647).
 
 ## Running Alternating Line Experiments
 In order to generate the plots found in Section 2.3 ("A Mixup Failure Case"), one can run the following command 
