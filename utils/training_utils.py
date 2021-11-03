@@ -10,6 +10,12 @@ def get_grad_norm(model):
     return grad_norm ** 0.5
 
 
+def reset_weights(m):
+    reset_parameters = getattr(m, 'reset_parameters', None)
+    if callable(reset_parameters):
+        m.reset_parameters()
+
+
 def get_model_param_tensor(model):
     flattened_params = []
     for param_tensor in model.parameters():
@@ -102,14 +108,15 @@ def full_train_test_loop(
                 _, err = test(model, val_loader, test_loss_fn, out_file, device, return_error=True)
                 training_errors.append(err)
         full_training_errors.append(training_errors)
-        avg_test_error += test(model, test_loader, test_loss_fn, out_file, device, return_error=True)[1] / num_runs 
+        avg_test_error += 100 * test(model, test_loader, test_loss_fn, out_file, device, return_error=True)[1] / num_runs 
         if evals:
             model_evals = get_model_evaluations(model, test_loader, device=device).cpu().numpy()
             full_model_evals.append(model_evals)
+        model.apply(reset_weights)
     print('-------------------------------------------------\n', file=out_file)
 
     # Final test performance.
-    print('{} average test error over {} runs: {:.0f}%'.format(model_name, num_runs, avg_test_error), file=out_file)
+    print('{} average test error over {} runs: {:.2f}%'.format(model_name, num_runs, avg_test_error), file=out_file)
     print('-------------------------------------------------\n', file=out_file)
 
     return np.mean(full_training_errors, axis=0), np.std(full_training_errors, axis=0), np.mean(full_model_evals, axis=0)

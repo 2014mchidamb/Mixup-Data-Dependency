@@ -2,7 +2,7 @@
 #SBATCH --job-name=train_models
 #SBATCH -t 12:00:00
 #SBATCH --mem=15G
-#SBATCH --gres=gpu:p100:1
+#SBATCH --gres=gpu:1
 #SBATCH --partition=compsci-gpu
 import argparse
 import numpy as np
@@ -24,11 +24,11 @@ from utils.visualization_utils import plot_mixup_error
 
 # Set up commandline arguments.
 parser = argparse.ArgumentParser(description='Hyperparameters for model training.')
-parser.add_argument('--task-name', dest='task_name', default='MNIST', type=str)
-parser.add_argument('--alpha', dest='mixup_alpha', default=1, type=float)
+parser.add_argument('--task-name', dest='task_name', default='CIFAR10', type=str)
+parser.add_argument('--alpha', dest='mixup_alpha', default=16, type=float)
 parser.add_argument('--no-erm', dest='no_erm', action='store_true')
-parser.add_argument('--num-runs', dest='num_runs', default=5, type=int)
-parser.add_argument('--subsample', dest='subsample', default=0, type=int)
+parser.add_argument('--num-runs', dest='num_runs', default=1, type=int)
+parser.add_argument('--subsample', dest='subsample', default=5, type=int)
 parser.set_defaults(no_erm=False)
 args = parser.parse_args()
 
@@ -90,6 +90,8 @@ print('-------------------------------------------------\n', file=perf_file)
 if args.subsample > 0:
     train_data = torch.utils.data.Subset(train_data, 
             np.random.choice(list(range(len(train_data))), size=args.subsample, replace=False))
+    test_data = torch.utils.data.Subset(test_data, 
+            np.random.choice(list(range(len(test_data))), size=args.subsample, replace=False))
 mixup_train = ManifoldMixupDataset(train_data, same_class_only=False, num_classes=10, disclude_erm=args.no_erm)
 
 # Prepare mixup and same class mixup data.
