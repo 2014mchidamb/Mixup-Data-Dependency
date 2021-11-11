@@ -1,7 +1,7 @@
 #!/home/users/mc696/anaconda3/bin/python3
 #SBATCH --job-name=train_models
-#SBATCH -t 12:00:00
-#SBATCH --mem=15G
+#SBATCH -t 24:00:00
+#SBATCH --mem=20G
 #SBATCH --gres=gpu:1
 #SBATCH --partition=compsci-gpu
 import argparse
@@ -25,10 +25,10 @@ from utils.visualization_utils import plot_mixup_error
 # Set up commandline arguments.
 parser = argparse.ArgumentParser(description='Hyperparameters for model training.')
 parser.add_argument('--task-name', dest='task_name', default='CIFAR10', type=str)
-parser.add_argument('--alpha', dest='mixup_alpha', default=16, type=float)
+parser.add_argument('--alpha', dest='mixup_alpha', default=1, type=float)
 parser.add_argument('--no-erm', dest='no_erm', action='store_true')
-parser.add_argument('--num-runs', dest='num_runs', default=1, type=int)
-parser.add_argument('--subsample', dest='subsample', default=5, type=int)
+parser.add_argument('--num-runs', dest='num_runs', default=5, type=int)
+parser.add_argument('--subsample', dest='subsample', default=0, type=int)
 parser.set_defaults(no_erm=False)
 args = parser.parse_args()
 
@@ -71,10 +71,10 @@ mixup_alpha = args.mixup_alpha
 h_dim = 512
 num_hidden = 1
 lr = 1e-3
-epochs = 50 if not_NCAL else 1000
+epochs = 50 if not_NCAL else 5000
 batch_size = 128
 num_runs = args.num_runs
-test_interval = 0 if not_NCAL else 10 # How often to append error.
+test_interval = 0 if not_NCAL else 50  # How often to append error.
 
 print('The following model/training parameters were used for this run: \n', file=perf_file)
 print('batch_size = ', batch_size, file=perf_file)

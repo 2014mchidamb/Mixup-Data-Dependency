@@ -16,10 +16,15 @@ def plot_mixup_error(task, mixup_alpha, num_runs, num_epochs, mixup_avg_errors, 
 
     # Create error plot.
     plt.figure(figsize=(9, 7))
+    plt.rc('axes', titlesize=18, labelsize=18)
+    plt.rc('xtick', labelsize=15)
+    plt.rc('ytick', labelsize=15)
+    plt.rc('legend', fontsize=18)
+    plt.rc('figure', titlesize=20)
 
-    plt.title(plot_title, fontsize=15)
-    plt.xlabel('Epochs', fontsize=15)
-    plt.ylabel('Training Error', fontsize=15)
+    plt.title(plot_title)
+    plt.xlabel('Epochs')
+    plt.ylabel('Training Error')
 
     x_epochs = [i for i in range(1, num_epochs + 1) if (test_interval == 0 or i % test_interval == 0)]
     plt.plot(x_epochs, base_avg_errors, label='ERM', color='C0')

@@ -1,21 +1,21 @@
 Size of subsampled train data: 12000
 Size of subsampled test data: 2000
-MNIST Average Angular Distance Between Train/Mixup Points With Class Collisions: 0.24889051335873952
-MNIST Smallest Angular Distance Between Train/Mixup Points With Class Collisions: 0.13909575709564104
-MNIST Average Angular Distance Between Test/Mixup Points With Class Collisions: 0.24684602224875188
-MNIST Smallest Angular Distance Between Test/Mixup Points With Class Collisions: 0.15953758508980032
+MNIST Average Euclidean Distance Between Train/Mixup Points With Class Collisions: 19.756297031252295
+MNIST Smallest Euclidean Distance Between Train/Mixup Points With Class Collisions: 11.432892214502045
+MNIST Average Euclidean Distance Between Test/Mixup Points With Class Collisions: 19.776173571070046
+MNIST Smallest Euclidean Distance Between Test/Mixup Points With Class Collisions: 11.897043968434467
 
 Size of subsampled train data: 10000
 Size of subsampled test data: 2000
-CIFAR10 Average Angular Distance Between Train/Mixup Points With Class Collisions: 0.26272604754988776
-CIFAR10 Smallest Angular Distance Between Train/Mixup Points With Class Collisions: 0.09673729415038314
-CIFAR10 Average Angular Distance Between Test/Mixup Points With Class Collisions: 0.2630898526530839
-CIFAR10 Smallest Angular Distance Between Test/Mixup Points With Class Collisions: 0.08739717745875618
+CIFAR10 Average Euclidean Distance Between Train/Mixup Points With Class Collisions: 49.032994847120435
+CIFAR10 Smallest Euclidean Distance Between Train/Mixup Points With Class Collisions: 17.715513259282723
+CIFAR10 Average Euclidean Distance Between Test/Mixup Points With Class Collisions: 49.04059705461649
+CIFAR10 Smallest Euclidean Distance Between Test/Mixup Points With Class Collisions: 22.13276545590278
 
 Size of subsampled train data: 10000
 Size of subsampled test data: 2000
-CIFAR100 Average Angular Distance Between Train/Mixup Points With Class Collisions: 0.24820575571322714
-CIFAR100 Smallest Angular Distance Between Train/Mixup Points With Class Collisions: 0.07016455603425983
-CIFAR100 Average Angular Distance Between Test/Mixup Points With Class Collisions: 0.2448506762447441
-CIFAR100 Smallest Angular Distance Between Test/Mixup Points With Class Collisions: 0.08186423905844609
+CIFAR100 Average Euclidean Distance Between Train/Mixup Points With Class Collisions: 36.840193513705096
+CIFAR100 Smallest Euclidean Distance Between Train/Mixup Points With Class Collisions: 12.935805852262938
+CIFAR100 Average Euclidean Distance Between Test/Mixup Points With Class Collisions: 37.133662026490455
+CIFAR100 Smallest Euclidean Distance Between Test/Mixup Points With Class Collisions: 15.075637518529609
 

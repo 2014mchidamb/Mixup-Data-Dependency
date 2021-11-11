@@ -2,7 +2,7 @@
 #SBATCH --job-name=analysis
 #SBATCH -t 12:00:00
 #SBATCH --mem=30G
-#SBATCH --gres=gpu:1
+#SBATCH --gres=gpu:a5000:1
 #SBATCH --partition=compsci-gpu
 import numpy as np
 import os
@@ -46,29 +46,29 @@ def compute_min_mixup_distance(out_file, task, train_dataset, test_dataset, subs
     mixup_points = np.array(mixup_points)
     print('Size of Mixup array: {}'.format(len(mixup_points)))
 
-    # Angular distance.
-    def min_ang_dists(data):
+    # Pairwise distance computations.
+    def min_dists(data):
         min_dists = []
         for example, label in data:
-            min_dists.append(np.amin(np.arccos(1 - cdist(torch.flatten(example).numpy().reshape(1, -1), 
-                mixup_points[mixup_indices[label]], 'cosine')) / np.pi))
+            min_dists.append(np.amin(cdist(torch.flatten(example).numpy().reshape(1, -1),
+                mixup_points[mixup_indices[label]], 'euclidean')))
         return min_dists
 
-    # Compute angular distances between mixup points and train/test points.
-    min_train_dists = min_ang_dists(train_data)
-    min_test_dists = min_ang_dists(test_data)
+    # Compute distances between mixup points and train/test points.
+    min_train_dists = min_dists(train_data)
+    min_test_dists = min_dists(test_data)
 
     # Min and avg dists.
     min_mixup_train_dist, avg_mixup_train_dist = np.amin(min_train_dists), np.mean(min_train_dists)
     min_mixup_test_dist, avg_mixup_test_dist = np.amin(min_test_dists), np.mean(min_test_dists)
 
-    print('{} Average Angular Distance Between Train/Mixup Points With Class Collisions: {}'.format(task, avg_mixup_train_dist), file=out_file)
-    print('{} Smallest Angular Distance Between Train/Mixup Points With Class Collisions: {}'.format(task, min_mixup_train_dist), file=out_file)
-    print('{} Average Angular Distance Between Test/Mixup Points With Class Collisions: {}'.format(task, avg_mixup_test_dist), file=out_file)
-    print('{} Smallest Angular Distance Between Test/Mixup Points With Class Collisions: {}\n'.format(task, min_mixup_test_dist), file=out_file)
+    print('{} Average Euclidean Distance Between Train/Mixup Points With Class Collisions: {}'.format(task, avg_mixup_train_dist), file=out_file)
+    print('{} Smallest Euclidean Distance Between Train/Mixup Points With Class Collisions: {}'.format(task, min_mixup_train_dist), file=out_file)
+    print('{} Average Euclidean Distance Between Test/Mixup Points With Class Collisions: {}'.format(task, avg_mixup_test_dist), file=out_file)
+    print('{} Smallest Euclidean Distance Between Test/Mixup Points With Class Collisions: {}\n'.format(task, min_mixup_test_dist), file=out_file)
 
 
-subset_prop = 0.5 # How much to subsample the data.
+subset_prop = 0.2 # How much to subsample the data.
 alpha = 1024 # Mixing parameter.
 num_epochs = 1
 out_file= open('runs/datasets_subset_{}_alpha_{}_epochs_{}_analysis.out'.format(subset_prop, alpha, num_epochs), 'w')

@@ -12,18 +12,12 @@ num_runs =  5
 Mixup model training loss results: 
 -------------------------------------------------
 
-Mixup test performance: 
-
-Test set: Average loss: 0.0199, Accuracy: 4975/10000 (50%)
-
+Mixup average test error over 5 runs: 48.29%
 -------------------------------------------------
 
 Base model training loss results: 
 -------------------------------------------------
 
-Base test performance: 
-
-Test set: Average loss: 0.0338, Accuracy: 5558/10000 (56%)
-
+Base average test error over 5 runs: 47.96%
 -------------------------------------------------
 

@@ -1,34 +1,23 @@
 The following model/training parameters were used for this run: 
 
 batch_size =  128
-mixup_alpha =  32.0
+mixup_alpha =  16.0
 h_dim =  512
 num_hidden =  1
 lr =  0.001
-epochs =  5000
-num_runs =  10
+epochs =  50
+num_runs =  3
 -------------------------------------------------
 
 Mixup model training loss results: 
 -------------------------------------------------
 
-Mixup average test error over 10 runs: 47.00%
+Mixup average test error over 3 runs: 80.00%
 -------------------------------------------------
 
 Base model training loss results: 
 -------------------------------------------------
 
-Base average test error over 10 runs: 7.00%
+Base average test error over 3 runs: 80.00%
 -------------------------------------------------
 
-Mixup Model Evaluations: 
-[[0.99745065 0.00254944]
- [0.61102366 0.38897628]
- [0.5288068  0.47119316]
- [0.51000315 0.4899969 ]
- [0.4806611  0.51933885]
- [0.446385   0.553615  ]
- [0.41215816 0.58784187]
- [0.37592298 0.62407696]
- [0.31522912 0.6847709 ]
- [0.24685797 0.753142  ]]
