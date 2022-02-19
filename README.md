@@ -1,5 +1,4 @@
 # Mixup-Data-Dependency
-Code associated with the paper ["Towards Understanding the Data Dependency of Mixup-style Training"](https://arxiv.org/abs/2110.07647).
 
 ## Running Alternating Line Experiments
 In order to generate the plots found in Section 2.3 ("A Mixup Failure Case"), one can run the following command 
@@ -31,7 +30,7 @@ Once again, if running using slurm it is possible to instead run `./tasks/run_ta
 same arguments as above and an additional fourth argument set to 0. As before, output files can be found in `runs/`
 and `plots/`.
 
-## Running Angular Distance Analysis
+## Running Sufficiency Condition Analysis
 To recreate the approximate epsilon computation found in Section 2.4 (in the discussion of application of sufficient conditions), one
 can run the following command after manually setting `subset_prop` and `alpha` in `analysis/mixup_point_analysis.py`.
 

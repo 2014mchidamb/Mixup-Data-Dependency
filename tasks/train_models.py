@@ -1,9 +1,3 @@
-#!/home/users/mc696/anaconda3/bin/python3
-#SBATCH --job-name=train_models
-#SBATCH -t 24:00:00
-#SBATCH --mem=20G
-#SBATCH --gres=gpu:1
-#SBATCH --partition=compsci-gpu
 import argparse
 import numpy as np
 import os

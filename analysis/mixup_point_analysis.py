@@ -1,9 +1,3 @@
-#!/home/users/mc696/anaconda3/bin/python3
-#SBATCH --job-name=analysis
-#SBATCH -t 12:00:00
-#SBATCH --mem=30G
-#SBATCH --gres=gpu:a5000:1
-#SBATCH --partition=compsci-gpu
 import numpy as np
 import os
 import sys
@@ -16,7 +10,7 @@ from utils.data_utils import load_mnist, load_cifar10, load_cifar100
 
 
 def compute_min_mixup_distance(out_file, task, train_dataset, test_dataset, subset_prop, simulation_epochs, alpha):
-    """Computes min/avg angular distance between test/train data points and mixed up train data points."""
+    """Computes min/avg euclidean distance between test/train data points and mixed up train data points."""
     # We will use these indices when comparing with other points to check for collisions.
     mixup_indices = {i : [] for i in range(len(train_dataset.classes))}
     mixup_points = []
